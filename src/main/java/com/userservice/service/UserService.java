@@ -1,0 +1,22 @@
+package com.userservice.service;
+
+import com.userservice.dto.UserRequest;
+import com.userservice.entity.User;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UserService {
+
+    public List<User> getUsers();
+
+    public Optional<User> getUser(Long id);
+
+    public User createUser(UserRequest post) throws Exception;
+
+    public User updateUser(UserRequest post, Long id) throws Exception;
+
+
+    public User deleteUser(Long id) throws Exception;
+
+}
