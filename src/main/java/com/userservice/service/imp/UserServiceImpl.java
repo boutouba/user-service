@@ -1,12 +1,14 @@
 package com.userservice.service.imp;
 
 import com.userservice.dto.UserRequest;
+import com.userservice.dto.UserResponse;
 import com.userservice.entity.User;
 import com.userservice.repository.UserRepository;
 import com.userservice.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +21,17 @@ public class UserServiceImpl implements UserService {
          this.userRepository = userRepository;
      }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> getUsers() {
+         List<UserResponse> userResponses = new ArrayList<>();
+         List<User> users = userRepository.findAll();
+        for(User u : users) {
+            UserResponse ur = new UserResponse();
+            ur.setUsername(u.getUsername());
+            ur.setId(u.getId());
+            ur.setFullname(u.getFullname());
+            userResponses.add(ur);
+        }
+        return userResponses;
     }
 
     public Optional<User> getUser(Long id) {

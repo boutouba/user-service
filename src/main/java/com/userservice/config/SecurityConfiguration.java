@@ -38,7 +38,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/users").authenticated()
                         .requestMatchers("/api/v1/**").authenticated()
                         //.anyRequest().authenticated()
-                ).authenticationProvider(authenticationProvider())
+                );
+                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

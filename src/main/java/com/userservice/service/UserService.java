@@ -1,6 +1,7 @@
 package com.userservice.service;
 
 import com.userservice.dto.UserRequest;
+import com.userservice.dto.UserResponse;
 import com.userservice.entity.User;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    public List<User> getUsers();
+    public List<UserResponse> getUsers();
 
     public Optional<User> getUser(Long id);
 

@@ -1,6 +1,7 @@
 package com.userservice.controller;
 
 import com.userservice.dto.UserRequest;
+import com.userservice.dto.UserResponse;
 import com.userservice.entity.User;
 import com.userservice.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     public UserService userService;
@@ -20,7 +22,7 @@ public class UserController {
     }
 
     @RequestMapping(path="/users", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getPosts() {
+    public ResponseEntity<List<UserResponse>> getPosts() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
