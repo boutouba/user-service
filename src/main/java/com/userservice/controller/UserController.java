@@ -1,5 +1,6 @@
 package com.userservice.controller;
 
+import com.userservice.dto.UserNPRequest;
 import com.userservice.dto.UserRequest;
 import com.userservice.dto.UserResponse;
 import com.userservice.entity.User;
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/user/edit/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<User> updatePost(@RequestBody UserRequest userRequest, @PathVariable Long id) throws Exception {
+    public ResponseEntity<User> updatePost(@RequestBody UserNPRequest userRequest, @PathVariable Long id) throws Exception {
         User post = userService.updateUser(userRequest, id);
         return new ResponseEntity<>(post, HttpStatus.OK);
     }

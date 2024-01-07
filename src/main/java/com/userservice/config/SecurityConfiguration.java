@@ -24,8 +24,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    JwtAuthFilter jwtAuthFilter;
+    final private JwtAuthFilter jwtAuthFilter;
+
+    public SecurityConfiguration(JwtAuthFilter jwtAuthFilter) {
+        this.jwtAuthFilter = jwtAuthFilter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,13 +37,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/api/v1/users").authenticated()
-                        .requestMatchers("/api/v1/**").authenticated()
-                        //.anyRequest().authenticated()
+//                        .requestMatchers("/login").permitAll()
+//                        .requestMatchers("/api/v1/users").authenticated()
+//                        .requestMatchers("/api/v1/**").authenticated()
+                        .anyRequest().permitAll()
                 );
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                //.authenticationProvider(authenticationProvider())
+                //.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

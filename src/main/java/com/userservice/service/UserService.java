@@ -1,5 +1,6 @@
 package com.userservice.service;
 
+import com.userservice.dto.UserNPRequest;
 import com.userservice.dto.UserRequest;
 import com.userservice.dto.UserResponse;
 import com.userservice.entity.User;
@@ -15,7 +16,7 @@ public interface UserService {
 
     public User createUser(UserRequest post) throws Exception;
 
-    public User updateUser(UserRequest post, Long id) throws Exception;
+    public User updateUser(UserNPRequest post, Long id) throws Exception;
 
 
     public User deleteUser(Long id) throws Exception;

@@ -1,5 +1,6 @@
 package com.userservice.service.imp;
 
+import com.userservice.dto.UserNPRequest;
 import com.userservice.dto.UserRequest;
 import com.userservice.dto.UserResponse;
 import com.userservice.entity.User;
@@ -53,13 +54,13 @@ public class UserServiceImpl implements UserService {
         return p;
     }
 
-    public User updateUser(UserRequest user, Long id) throws Exception {
+    public User updateUser(UserNPRequest user, Long id) throws Exception {
         User p = userRepository.findById(id).orElse(null);
         p.setUsername(user.getUsername());
         p.setFullname(user.getFullname());
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = passwordEncoder.encode(user.getPassword());
-        p.setPassword(password);
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String password = passwordEncoder.encode(user.getPassword());
+//        p.setPassword(password);
         userRepository.save(p);
         return p;
     }
